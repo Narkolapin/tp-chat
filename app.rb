@@ -5,15 +5,16 @@ module ChatDemo
 
     set :sessions, true
 
-    get "/" do
-      erb :"login.html"
-    end
-
     post '/' do
-      session['utilisateur'] = params['user']
-      session['motdepass'] = params['pwd']
+      session[:utilisateur] = params['user']
+      session[:motdepass] = params['pwd']
       response.set_cookie(session['utilisateur'],settings.token) 
       redirect '/chat'
+    end
+
+
+    get "/" do
+      erb :"login.html"
     end
 
     get "/chat" do
