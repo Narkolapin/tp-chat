@@ -9,7 +9,7 @@ module ChatDemo
       erb :"login.html"
     end
 
-    post '/post' do
+    post '/' do
       session['utilisateur'] = params['user']
       session['motdepass'] = params['pwd']
       response.set_cookie(session['utilisateur'],settings.token) 
