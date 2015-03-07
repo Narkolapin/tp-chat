@@ -1,16 +1,14 @@
-# ruby-getting-started
+# Tp ruby : le chat de l'année !
 
-A barebones Rails app, which can easily be deployed to Heroku.
+Ce répository est déstiné pour le tp du ruby sur la réalisation d'un chat en utilisant Heroku comme serveur, Sinatra comme templating de vue et Mongolab pour la base de donée.
 
-This application support the [Getting Started with Ruby on Heroku](https://devcenter.heroku.com/articles/getting-started-with-ruby) article - check it out.
+## Deployer l'application en local
 
-## Running Locally
-
-Make sure you have Ruby installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+Vous devez posséder Ruby pour pouvoir déployer l'application. Et comme vous etes un Hypster, avoir un linux ou OSX.
 
 ```sh
-$ git clone git@github.com:heroku/ruby-getting-started.git
-$ cd ruby-getting-started
+$ git clone git@github.com:Narkolapin/tp-chat.git
+$ cd tp-chat
 $ bundle install
 $ rake db:create db:migrate
 $ foreman start web

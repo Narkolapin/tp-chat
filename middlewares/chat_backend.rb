@@ -1,8 +1,10 @@
 require 'faye/websocket'
 
-module ChatDemo
+module TpChat
+  
   class ChatBackend
     KEEPALIVE_TIME = 15 # in seconds
+    CHANNEL = "channel01"
 
     def initialize(app)
       @app     = app
@@ -40,4 +42,5 @@ module ChatDemo
 		end
     end
   end
+
 end

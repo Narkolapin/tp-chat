@@ -1,6 +1,6 @@
 require './app'
 require './middlewares/chat_backend'
 
-use ChatDemo::ChatBackend
+use TpChat::ChatBackend
 
 run ChatDemo::App
