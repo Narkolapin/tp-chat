@@ -9,11 +9,11 @@ module ChatDemo
       erb :"login.html"
     end
 
-    post '/login' do
+    post '/post' do
       session['utilisateur'] = params['user']
       session['motdepass'] = params['pwd']
       response.set_cookie(session['utilisateur'],settings.token) 
-      redirect '/'
+      redirect '/chat'
     end
 
     get "/chat" do
