@@ -17,8 +17,7 @@ module ChatDemo
     end
 
     get "/chat" do
-      user = session['utilisateur']
-      erb :"chat.html"
+      erb :"chat.html", :locals => {:user => session['utilisateur']}
     end
   end
 end
