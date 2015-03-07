@@ -5,11 +5,10 @@ module ChatDemo
 
     set :sessions, true
 
-    post '/' do
+    post "/" do
       session[:utilisateur] = params['user']
       session[:motdepass] = params['pwd']
-      response.set_cookie(session['utilisateur'],settings.token) 
-      redirect '/chat'
+      redirect "/chat"
     end
 
 
