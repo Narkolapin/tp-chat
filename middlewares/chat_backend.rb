@@ -1,17 +1,30 @@
 require 'faye/websocket'
 require 'mongo'
+require 'uri'
 
 module TpChat
   
   class ChatBackend
     KEEPALIVE_TIME = 15 # in seconds
     CHANNEL = "channel01"
+    mongo_client = MongoClient.new("mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat")
 
     def initialize(app)
-      @app     = app
-      @clients = []
-      mongo_client = MongoClient.new("mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat")
+		@app     = app
+		@clients = []
+		@dbConnect = get_connection
+		@db = connectdb["chat"]
+		@coll = db["message"]
     end
+
+    def get_connection
+	  return @db_connection if @db_connection
+	  db = URI("mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat")
+	  db_name = db.path.gsub(/^\//, '')
+	  @db_connection = Mongo::Connection.new(db.host, db.port).db(db_name)
+	  @db_connection.authenticate(db.user, db.password) unless (db.user.nil? || db.password.nil?)
+	  @db_connection
+	end
 
     def call(env)
 		if Faye::WebSocket.websocket?(env)
