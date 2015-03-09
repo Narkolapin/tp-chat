@@ -12,9 +12,6 @@ module TpChat
     def initialize(app)
 		@app     = app
 		@clients = []
-		@dbConnect = get_connection
-		@db = connectdb["chat"]
-		@coll = db["message"]
     end
 
     def get_connection
@@ -25,6 +22,11 @@ module TpChat
 	  @db_connection.authenticate(db.user, db.password) unless (db.user.nil? || db.password.nil?)
 	  @db_connection
 	end
+
+
+	dbConnect = get_connection
+	db = connectdb["chat"]
+	coll = db["message"]
 
     def call(env)
 		if Faye::WebSocket.websocket?(env)

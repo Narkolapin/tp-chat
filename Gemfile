@@ -7,5 +7,3 @@ gem "puma"
 gem "redis"
 gem "mongo"
 gem "bson_ext"
-
-
