@@ -39,7 +39,7 @@ module TpChat
 			#message
 			ws.on :message do |event|
 				p [:message, event.data]
-				@coll.insert([{:content => :text}])
+				@coll.insert([{:content => event.data.value}])
 				@clients.each {|client| client.send(event.data) }
 				
 			end
