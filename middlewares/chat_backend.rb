@@ -21,7 +21,7 @@ module TpChat
 
 		connectdb = @db_connection
 		db = connectdb["chat"]
-		coll = db["message"]
+		@coll = db["message"]
     end
 
     def call(env)
@@ -39,7 +39,7 @@ module TpChat
 			#message
 			ws.on :message do |event|
 				p [:message, event.data]
-				coll.insert([{:content => event.data}])
+				#@coll.insert([{"message" => event.data}])
 				@clients.each {|client| client.send(event.data) }
 				
 			end
