@@ -23,7 +23,7 @@ module TpChat
 	end
 
 
-	dbConnect = get_connection
+	dbConnect = self.class.get_connection
 	db = connectdb["chat"]
 	coll = db["message"]
 
