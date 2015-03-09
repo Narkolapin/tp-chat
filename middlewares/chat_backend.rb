@@ -11,17 +11,6 @@ module TpChat
     def initialize(app)
 		@app     = app
 		@clients = []
-
-		db = URI("mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat")
-		db_name = db.path.gsub(/^\//, '')
-		@db_connection = Mongo::Connection.new(db.host, db.port).db(db_name)
-		@db_connection.authenticate(db.user, db.password)
-		@db_connection
-			
-
-		connectdb = @db_connection
-		db = connectdb["chat"]
-		@coll = db["message"]
     end
 
     def call(env)
@@ -39,7 +28,6 @@ module TpChat
 			#message
 			ws.on :message do |event|
 				p [:message, event.data]
-				@coll.insert([{:content => message }])
 				@clients.each {|client| client.send(event.data) }
 				
 			end
