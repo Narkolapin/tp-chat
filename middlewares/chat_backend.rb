@@ -39,9 +39,9 @@ module TpChat
 			#message
 			ws.on :message do |event|
 				p [:message, event.data]
-				#message = {"message" => event.data} 
+				coll.insert([{:content => event.data}])
 				@clients.each {|client| client.send(event.data) }
-				coll.insert([{:message => event.data}])
+				
 			end
 			
 			#fermeture
