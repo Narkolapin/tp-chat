@@ -24,14 +24,6 @@ module TpChat
 		coll = db["message"]
     end
 
-    def get_connection
-	  return @db_connection if @db_connection
-
-	end
-
-
-
-
     def call(env)
 		if Faye::WebSocket.websocket?(env)
 			
@@ -49,6 +41,7 @@ module TpChat
 				p [:message, event.data]
 				#message = {"message" => event.data} 
 				@clients.each {|client| client.send(event.data) }
+				coll.insert([{:message => event.data}])
 			end
 			
 			#fermeture
