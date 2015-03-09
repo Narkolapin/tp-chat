@@ -19,9 +19,9 @@ module TpChat
 		@db_connection
 			
 
-		@dbConnect = @get_connection
-		@db = @connectdb["chat"]
-		@coll = @db["message"]
+		@dbConnect = db_connection
+		@db = connectdb["chat"]
+		@coll = db["message"]
     end
 
     def get_connection
