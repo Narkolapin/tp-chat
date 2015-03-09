@@ -10,8 +10,8 @@ module TpChat
     def initialize(app)
       @app     = app
       @clients = []
-      uri =  'mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat'
-      db.authenticate = MongoClient.from_uri(uri)
+      #uri =  'mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat'
+      #db.authenticate = MongoClient.from_uri(uri)
     end
 
     def call(env)
