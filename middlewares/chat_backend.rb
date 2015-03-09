@@ -7,7 +7,6 @@ module TpChat
   class ChatBackend
     KEEPALIVE_TIME = 15 # in seconds
     CHANNEL = "channel01"
-    mongo_client = MongoClient.new("mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat")
 
     def initialize(app)
 		@app     = app
