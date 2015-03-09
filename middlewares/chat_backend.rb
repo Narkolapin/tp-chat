@@ -15,7 +15,7 @@ module TpChat
 		db = URI("mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat")
 		db_name = db.path.gsub(/^\//, '')
 		@db_connection = Mongo::Connection.new(db.host, db.port).db(db_name)
-		@db_connection.authenticate(db.user, db.password) unless (db.user.nil? || db.password.nil?)
+		@db_connection.authenticate(db.user, db.password)
 		@db_connection
 			
 
