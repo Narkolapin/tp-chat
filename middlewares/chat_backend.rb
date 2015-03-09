@@ -1,4 +1,5 @@
 require 'faye/websocket'
+require 'mongo'
 
 module TpChat
   
@@ -9,6 +10,8 @@ module TpChat
     def initialize(app)
       @app     = app
       @clients = []
+      uri =  'mongodb://adrix:adrix@ds051851.mongolab.com:51851/chat'
+      db.authenticate = MongoClient.from_uri(uri)
     end
 
     def call(env)
@@ -26,6 +29,7 @@ module TpChat
 			#message
 			ws.on :message do |event|
 				p [:message, event.data]
+				message = {"message" => event.data} 
 				@clients.each {|client| client.send(event.data) }
 			end
 			
